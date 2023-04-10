@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,5 +45,31 @@ public class UserServiceImpl implements UserService {
 
         UserResponse userResponse = UserResponseMapper.mapToUserResponse(userEntity.get());
         return userResponse;
+    }
+
+    @Override
+    public List<UserResponse> getAllUsers() {
+
+        List<UserEntity> userEntityList = userRepository.findAll();
+
+        return userEntityList.stream().map(UserResponseMapper::mapToUserResponse).toList();
+    }
+
+    @Override
+    public UserResponse deleteUsersById(Long id) {
+
+        userRepository.deleteById(id);
+
+        Optional<UserEntity> deletedUser = userRepository.findById(id);
+
+        if (deletedUser.isEmpty()) {
+
+            UserResponse userResponse = new UserResponse();
+            userResponse.setId(id);
+
+            return userResponse;
+        }
+
+        return null;
     }
 }
