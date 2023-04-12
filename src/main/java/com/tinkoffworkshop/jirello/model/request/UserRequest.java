@@ -15,5 +15,5 @@ public class UserRequest {
 
     private String surname;
 
-    private String mail;
+    private String email;
 }

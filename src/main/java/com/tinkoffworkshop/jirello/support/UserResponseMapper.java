@@ -9,7 +9,7 @@ public class UserResponseMapper {
                 userEntity.getId(),
                 userEntity.getName(),
                 userEntity.getSurname(),
-                userEntity.getMail()
+                userEntity.getEmail()
         );
     }
 }

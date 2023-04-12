@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = UserEntity.builder().
                 name(userRequest.getName()).
                 surname(userRequest.getSurname()).
-                mail(userRequest.getMail()).
+                email(userRequest.getEmail()).
                 build();
         UserEntity userEntityForResponse = userRepository.save(userEntity);
         UserResponse userResponse = UserResponseMapper.mapToUserResponse(userEntityForResponse);
