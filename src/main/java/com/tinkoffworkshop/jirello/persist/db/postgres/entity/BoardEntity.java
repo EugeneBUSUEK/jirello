@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -21,6 +22,9 @@ public class BoardEntity {
     private Long id;
 
     private String title;
+
+    @OneToMany(mappedBy="boardEntity")
+    private List<TagEntity> tags;
 
     @ManyToMany
     private Map<UserEntity, RoleEntity> usersRoles;

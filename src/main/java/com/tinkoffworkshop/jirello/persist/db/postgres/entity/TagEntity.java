@@ -19,6 +19,7 @@ public class TagEntity {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name="board_id", nullable=false)
     private BoardEntity boardEntity;
 
     private String title;
