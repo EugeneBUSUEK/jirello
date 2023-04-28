@@ -10,6 +10,7 @@ import com.tinkoffworkshop.jirello.persist.db.postgres.entity.UserEntity;
 import com.tinkoffworkshop.jirello.support.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,5 +46,11 @@ public class BoardService {
         List<BoardEntity> boardEntityList = boardRepository.findAll();
 
         return (BoardResponse) boardEntityList.stream().map(BoardMapper::mapToBoardResponse).toList();
+    }
+
+    @Transactional
+    public void deleteBoardById(Long boardId) {
+
+        boardRepository.deleteById(boardId);
     }
 }

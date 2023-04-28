@@ -22,4 +22,14 @@ public class BoardController {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{boardId}")
+    public ResponseEntity<?> deleteBoardById(
+            @PathVariable(name = "boardId") Long boardId
+    ) {
+
+        boardService.deleteBoardById(boardId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

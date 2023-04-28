@@ -6,16 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-import java.util.Map;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tblBoard")
-public class BoardEntity {
+@Table(name = "tblColumn")
+public class ColumnEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,12 +20,9 @@ public class BoardEntity {
 
     private String title;
 
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST, mappedBy="boardEntity")
-    private List<ColumnEntity> columns;
+    private Integer position;
 
-    @OneToMany(mappedBy="boardEntity")
-    private List<TagEntity> tags;
-
-    @ManyToMany
-    private Map<UserEntity, RoleEntity> usersRoles;
+    @ManyToOne
+    @JoinColumn(name = "board_id", nullable = false)
+    private BoardEntity boardEntity;
 }
