@@ -11,6 +11,9 @@ public interface TagRepository extends JpaRepository<TagEntity, Long> {
     <S extends TagEntity> S save(S entity);
 
     @Override
+    List<TagEntity> findAllById(Iterable<Long> longs);
+
+    @Override
     void deleteById(Long aLong);
 
     List<TagEntity> findAllByBoardEntity_Id(Long boardId);
