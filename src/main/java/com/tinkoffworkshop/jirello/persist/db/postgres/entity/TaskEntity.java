@@ -27,6 +27,12 @@ public class TaskEntity {
     private Integer position;
 
     @ManyToMany
+    private List<UserEntity> makers;
+
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST, mappedBy = "taskEntity")
+    private List<CommentEntity> commentEntity;
+
+    @ManyToMany
     private List<TagEntity> tags;
 
     @ManyToOne
