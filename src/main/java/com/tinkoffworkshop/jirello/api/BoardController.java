@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("boards")
 @RequiredArgsConstructor
@@ -20,8 +22,29 @@ public class BoardController {
 
         BoardResponse response = boardService.createBoard(boardRequest);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+    @GetMapping()
+    public ResponseEntity<?> getBoardsByUserId(@RequestParam(name = "userId") Long userId) {
+        List<BoardResponse> boardResponseList = boardService.getBoardsByUserId(userId);
+
+        return new ResponseEntity<>(boardResponseList, HttpStatus.OK);
+    }
+
+//    @PutMapping()
+//    public ResponseEntity<?> updateBoardName(@RequestParam(name = "boardId") Long boardId, BoardRequest boardRequest) {
+//        BoardResponse boardResponse = boardService.updateBoardName(boardId);
+//
+//        return new ResponseEntity<>(boardResponse, HttpStatus.OK);
+//    }
+
+//    @PutMapping("/{boardId}")
+//    public ResponseEntity<?> updateBoardParticipants(@PathVariable(name = "boardId") Long boardId, BoardRequest boardRequest) {
+//        BoardResponse boardResponse = boardService.updateBoardParticipants(boardId);
+//
+//        return new ResponseEntity<>(boardResponse, HttpStatus.OK);
+//    }
 
     @DeleteMapping("/{boardId}")
     public ResponseEntity<?> deleteBoardById(

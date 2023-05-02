@@ -18,11 +18,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class BoardService {
-
     private final BoardRepository boardRepository;
-
-    private final UserRepository userRepository;
-
     private final UserRoleService userRoleService;
 
     public BoardResponse createBoard(BoardRequest boardRequest) {
@@ -31,7 +27,6 @@ public class BoardService {
                 boardRequest,
                 userRoleService.getUserRoles(boardRequest.getUsers())
         );
-
         BoardEntity boardSaved = boardRepository.save(boardEntity);
 
         if (boardSaved == null) {
@@ -52,5 +47,11 @@ public class BoardService {
     public void deleteBoardById(Long boardId) {
 
         boardRepository.deleteById(boardId);
+    }
+
+    public List<BoardResponse> getBoardsByUserId(Long userId) {
+        List<BoardEntity> boardEntityList = boardRepository.findBoardEntitiesByUserId(userId);
+
+        return boardEntityList.stream().map(BoardMapper::mapToBoardResponse).toList();
     }
 }
