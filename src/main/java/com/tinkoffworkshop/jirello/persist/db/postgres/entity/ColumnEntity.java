@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -21,6 +23,9 @@ public class ColumnEntity {
     private String title;
 
     private Integer position;
+
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.REMOVE, mappedBy = "columnEntity")
+    private List<TaskEntity> tasks;
 
     @ManyToOne
     @JoinColumn(name = "board_id", nullable = false)

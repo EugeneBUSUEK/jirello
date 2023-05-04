@@ -26,7 +26,7 @@ public class BoardEntity {
     @OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST, mappedBy="boardEntity")
     private List<ColumnEntity> columns;
 
-    @OneToMany(mappedBy="boardEntity")
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST, mappedBy="boardEntity")
     private List<TagEntity> tags;
 
     @ManyToMany
