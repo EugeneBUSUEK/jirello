@@ -14,12 +14,10 @@ import java.util.List;
 @RequestMapping("boards")
 @RequiredArgsConstructor
 public class BoardController {
-
     private final BoardService boardService;
 
     @PostMapping()
     public ResponseEntity<?> createBoard(@RequestBody BoardRequest boardRequest) {
-
         BoardResponse response = boardService.createBoard(boardRequest);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -53,7 +51,6 @@ public class BoardController {
     public ResponseEntity<?> deleteBoardById(
             @PathVariable(name = "boardId") Long boardId
     ) {
-
         boardService.deleteBoardById(boardId);
 
         return new ResponseEntity<>(HttpStatus.OK);

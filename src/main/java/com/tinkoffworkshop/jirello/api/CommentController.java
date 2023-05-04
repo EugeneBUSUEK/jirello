@@ -15,7 +15,6 @@ import java.util.List;
 @RequestMapping("comments")
 @RequiredArgsConstructor
 public class CommentController {
-
     private final CommentService commentService;
 
     @PostMapping()

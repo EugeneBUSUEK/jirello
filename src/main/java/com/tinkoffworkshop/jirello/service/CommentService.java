@@ -18,7 +18,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CommentService {
-
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
     private final TaskRepository taskRepository;
@@ -32,7 +31,6 @@ public class CommentService {
         }
 
         CommentEntity commentEntity = CommentMapper.mapToCommentEntity(commentRequest, userEntity.get(), taskEntity.get());
-
         CommentEntity createdEntity = commentRepository.save(commentEntity);
 
         return CommentMapper.mapToCommentResponse(createdEntity);

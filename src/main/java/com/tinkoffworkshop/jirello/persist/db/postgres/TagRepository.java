@@ -6,15 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface TagRepository extends JpaRepository<TagEntity, Long> {
-
-    @Override
-    <S extends TagEntity> S save(S entity);
-
-    @Override
-    List<TagEntity> findAllById(Iterable<Long> longs);
-
-    @Override
-    void deleteById(Long aLong);
-
     List<TagEntity> findAllByBoardEntity_Id(Long boardId);
 }

@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BoardMapper {
-
     public static BoardEntity mapToBoardEntity(BoardRequest boardRequest, Map<UserEntity, RoleEntity> users) {
 
         return BoardEntity.builder()
@@ -20,6 +19,7 @@ public class BoardMapper {
     }
 
     public static BoardResponse mapToBoardResponse(BoardEntity boardEntity) {
+
         return BoardResponse.builder()
                 .id(boardEntity.getId())
                 .title(boardEntity.getTitle())

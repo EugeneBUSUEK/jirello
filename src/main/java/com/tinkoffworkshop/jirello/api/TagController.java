@@ -14,12 +14,10 @@ import java.util.List;
 @RequestMapping("tags")
 @RequiredArgsConstructor
 public class TagController {
-
     private final TagService tagService;
 
     @GetMapping()
     public ResponseEntity<?> getBoardTags(@RequestParam(name = "boardId") Long boardId) {
-
         List<TagResponse> tagResponseList = tagService.getBoardTags(boardId);
 
         return new ResponseEntity<>(tagResponseList, HttpStatus.OK);
@@ -27,7 +25,6 @@ public class TagController {
 
     @PostMapping("/{boardId}")
     public ResponseEntity<?> createTagOnBoard(@RequestBody TagOnBoardRequest tagOnBoardRequest) {
-
         TagResponse tagResponse = tagService.createTagOnBoard(tagOnBoardRequest);
 
         return new ResponseEntity<>(tagResponse, HttpStatus.CREATED);

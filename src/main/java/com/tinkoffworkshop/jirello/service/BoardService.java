@@ -21,7 +21,6 @@ public class BoardService {
     private final UserRoleService userRoleService;
 
     public BoardResponse createBoard(BoardRequest boardRequest) {
-
         BoardEntity boardEntity = BoardMapper.mapToBoardEntity(
                 boardRequest,
                 userRoleService.getUserRoles(boardRequest.getUsers())
@@ -36,7 +35,6 @@ public class BoardService {
     }
 
     public BoardResponse getBoardById() {
-
         List<BoardEntity> boardEntityList = boardRepository.findAll();
 
         return (BoardResponse) boardEntityList.stream().map(BoardMapper::mapToBoardResponse).toList();
@@ -44,7 +42,6 @@ public class BoardService {
 
     @Transactional
     public void deleteBoardById(Long boardId) {
-
         boardRepository.deleteById(boardId);
     }
 

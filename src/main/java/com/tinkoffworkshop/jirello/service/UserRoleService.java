@@ -15,9 +15,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserRoleService {
-
     private final UserRepository userRepository;
-
     private final RoleRepository roleRepository;
 
     public Map<UserEntity, RoleEntity> getUserRoles(List<UserRoleRequest> users) {

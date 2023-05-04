@@ -14,12 +14,10 @@ import java.util.List;
 @RequestMapping("users")
 @RequiredArgsConstructor
 public class UserController {
-
     private final UserService userService;
 
     @PostMapping()
     public ResponseEntity<?> createUser(@RequestBody UserRequest userRequest) {
-
         userService.createUser(userRequest);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -27,7 +25,6 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserById(@PathVariable(name = "id") Long id) {
-
         UserResponse userResponse = userService.getUserById(id);
 
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
@@ -35,7 +32,6 @@ public class UserController {
 
     @GetMapping()
     public ResponseEntity<?> getAllUsers() {
-
         List<UserResponse> userResponseList = userService.getAllUsers();
 
         return new ResponseEntity<>(userResponseList, HttpStatus.OK);
@@ -43,7 +39,6 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUserById(@PathVariable(name = "id") Long id) {
-
         UserResponse userResponse = userService.deleteUsersById(id);
 
         if (userResponse == null) {

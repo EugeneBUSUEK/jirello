@@ -14,12 +14,10 @@ import java.util.List;
 @RequestMapping("columns")
 @RequiredArgsConstructor
 public class ColumnController {
-
     private final ColumnService columnService;
 
     @PostMapping()
     public ResponseEntity<?> createColumnOnBoard(@RequestBody ColumnRequest columnRequest) {
-
         ColumnResponse columnResponse = columnService.createColumnOnBoard(columnRequest);
 
         return new ResponseEntity<>(columnResponse, HttpStatus.CREATED);
@@ -27,7 +25,6 @@ public class ColumnController {
 
     @GetMapping()
     public ResponseEntity<?> getColumnsOnBoard(@RequestParam Long boardId) {
-
         List<ColumnResponse> columnResponseList = columnService.getColumnsOnBoard(boardId);
 
         return new ResponseEntity<>(columnResponseList, HttpStatus.OK);
@@ -38,7 +35,6 @@ public class ColumnController {
             @PathVariable(name = "columnId") Long columnId,
             @RequestParam(name = "boardId") Long boardId
     ) {
-
         List<ColumnResponse> columnResponseList = columnService.deleteColumnFromBoard(columnId, boardId);
 
         return new ResponseEntity<>(columnResponseList, HttpStatus.OK);
@@ -50,7 +46,6 @@ public class ColumnController {
             @RequestParam(name = "boardId") Long boardId,
             @RequestBody ColumnRequest columnRequest
     ) {
-
         ColumnResponse columnResponse = columnService.updateColumnOnBoard(columnId, boardId, columnRequest);
 
         return new ResponseEntity<>(columnResponse, HttpStatus.OK);
@@ -63,7 +58,12 @@ public class ColumnController {
             @RequestParam(name = "positionBefore") Integer positionBefore,
             @RequestParam(name = "positionAfter") Integer positionAfter
     ) {
-        ColumnResponse columnResponse = columnService.swapColumnPositions(columnId, boardId, positionBefore, positionAfter);
+        ColumnResponse columnResponse = columnService.swapColumnPositions(
+                columnId,
+                boardId,
+                positionBefore,
+                positionAfter
+        );
 
         return new ResponseEntity<>(columnResponse, HttpStatus.OK);
     }

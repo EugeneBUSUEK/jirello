@@ -18,7 +18,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class TaskService {
-
     private final TaskRepository taskRepository;
     private final TagRepository tagRepository;
 
@@ -71,7 +70,9 @@ public class TaskService {
     public TaskResponse deleteTasksById(Long taskId) {
         Optional<TaskEntity> taskEntity = taskRepository.findById(taskId);
 
-        if (taskEntity.isEmpty()) throw new RuntimeException("task not found");
+        if (taskEntity.isEmpty()) {
+            throw new RuntimeException("task not found");
+        }
 
         List<TaskEntity> taskEntityList = taskRepository.getTaskEntitiesByColumnEntity_IdOrderByPositionAsc(taskEntity.get().getColumnEntity().getId());
         List<TaskEntity> taskEntityListForUpdate = changePositionsBetween(taskEntityList, taskEntity.get().getPosition(), taskEntityList.size());
@@ -106,7 +107,9 @@ public class TaskService {
     public TaskResponse swapTaskInColumns(Long taskId, Long columnId, Long newColumnId, Long boardId, Integer positionBefore, Integer positionAfter) {
         Optional<TaskEntity> taskEntityOptional = taskRepository.findById(taskId);
 
-        if (taskEntityOptional.isEmpty()) throw new RuntimeException("task not found");
+        if (taskEntityOptional.isEmpty()) {
+            throw new RuntimeException("task not found");
+        }
 
         List<TaskEntity> taskEntityListOfCurrentColumn = taskRepository.getTaskEntitiesByColumnEntity_IdOrderByPositionAsc(columnId);
         List<TaskEntity> taskEntityListForUpdate = changePositionsBetween(taskEntityListOfCurrentColumn, positionBefore, taskEntityListOfCurrentColumn.size());
@@ -121,7 +124,6 @@ public class TaskService {
         TaskEntity taskForUpdate = taskEntityOptional.get();
 
         taskForUpdate.setPosition(positionAfter);
-
         taskForUpdate.setColumnEntity(
                 ColumnEntity.builder().id(newColumnId).build()
         );

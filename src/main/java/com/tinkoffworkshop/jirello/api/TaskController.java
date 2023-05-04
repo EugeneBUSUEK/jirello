@@ -14,11 +14,13 @@ import java.util.List;
 @RequestMapping("tasks")
 @RequiredArgsConstructor
 public class TaskController {
-
     private final TaskService taskService;
 
     @PostMapping()
-    public ResponseEntity<?> createTask(@RequestParam(name = "columnId") Long columnId, @RequestBody TaskRequest taskRequest) {
+    public ResponseEntity<?> createTask(
+            @RequestParam(name = "columnId") Long columnId,
+            @RequestBody TaskRequest taskRequest
+    ) {
         TaskResponse taskResponse = taskService.createTask(columnId, taskRequest);
 
         return new ResponseEntity<>(taskResponse, HttpStatus.CREATED);
@@ -32,7 +34,10 @@ public class TaskController {
     }
 
     @PutMapping("/{taskId}")
-    public ResponseEntity<?> updateTasksById(@PathVariable(name = "taskId") Long taskId, @RequestBody TaskRequest taskRequest) {
+    public ResponseEntity<?> updateTasksById(
+            @PathVariable(name = "taskId") Long taskId,
+            @RequestBody TaskRequest taskRequest
+    ) {
         TaskResponse taskResponse = taskService.updateTasksById(taskId, taskRequest);
 
         return new ResponseEntity<>(taskResponse, HttpStatus.OK);
@@ -52,7 +57,12 @@ public class TaskController {
             @RequestParam(name = "positionBefore") Integer positionBefore,
             @RequestParam(name = "positionAfter") Integer positionAfter
     ) {
-        List<TaskResponse> taskResponseList = taskService.swapTaskPositionsInColumn(taskId, columnId, positionBefore, positionAfter);
+        List<TaskResponse> taskResponseList = taskService.swapTaskPositionsInColumn(
+                taskId,
+                columnId,
+                positionBefore,
+                positionAfter
+        );
 
         return new ResponseEntity<>(taskResponseList, HttpStatus.OK);
     }
@@ -66,7 +76,14 @@ public class TaskController {
             @RequestParam(name = "positionBefore") Integer positionBefore,
             @RequestParam(name = "positionAfter") Integer positionAfter
     ) {
-        TaskResponse taskResponse = taskService.swapTaskInColumns(taskId, columnId, newColumnId, boardId, positionBefore, positionAfter);
+        TaskResponse taskResponse = taskService.swapTaskInColumns(
+                taskId,
+                columnId,
+                newColumnId,
+                boardId,
+                positionBefore,
+                positionAfter
+        );
 
         return new ResponseEntity<>(taskResponse, HttpStatus.OK);
     }

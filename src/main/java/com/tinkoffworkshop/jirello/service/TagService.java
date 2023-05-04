@@ -14,13 +14,10 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TagService {
-
     private final BoardRepository boardRepository;
-
     private final TagRepository tagRepository;
 
     public List<TagResponse> getBoardTags(Long boardId) {
-
         List<TagEntity> tagEntityList = tagRepository.findAllByBoardEntity_Id(boardId);
 
         if (tagEntityList == null) {
@@ -31,12 +28,10 @@ public class TagService {
     }
 
     public TagResponse createTagOnBoard(TagOnBoardRequest tagOnBoardRequest) {
-
         TagEntity tagEntity = TagMapper.mapToTagEntity(
                 tagOnBoardRequest,
                 boardRepository.findById(tagOnBoardRequest.getBoardId()).get()
         );
-
         var savedTagEntity = tagRepository.save(tagEntity);
 
         if (savedTagEntity == null) {
