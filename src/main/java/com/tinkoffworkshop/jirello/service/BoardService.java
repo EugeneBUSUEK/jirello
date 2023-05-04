@@ -5,8 +5,6 @@ import com.tinkoffworkshop.jirello.model.response.BoardResponse;
 import com.tinkoffworkshop.jirello.persist.db.postgres.BoardRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.UserRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.BoardEntity;
-import com.tinkoffworkshop.jirello.persist.db.postgres.entity.RoleEntity;
-import com.tinkoffworkshop.jirello.persist.db.postgres.entity.UserEntity;
 import com.tinkoffworkshop.jirello.support.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BoardService {
     private final BoardRepository boardRepository;
+    private final UserRepository userRepository;
     private final UserRoleService userRoleService;
 
     public BoardResponse createBoard(BoardRequest boardRequest) {
@@ -54,4 +53,26 @@ public class BoardService {
 
         return boardEntityList.stream().map(BoardMapper::mapToBoardResponse).toList();
     }
+
+    public BoardResponse updateBoardName(Long boardId, BoardRequest boardRequest) {
+        Optional<BoardEntity> boardEntityOptional = boardRepository.findById(boardId);
+        BoardEntity boardEntity = boardEntityOptional.get();
+
+        boardEntity.setTitle(boardRequest.getTitle());
+        boardEntity = boardRepository.save(boardEntity);
+
+        return BoardMapper.mapToBoardResponse(boardEntity);
+    }
+
+//    public BoardResponse updateBoardParticipants(Long boardId, Long userId) {
+//        Optional<BoardEntity> boardEntity = boardRepository.findById(boardId);
+//        Optional<UserEntity> userEntity = userRepository.findById(userId);
+//
+//        if (userEntity.isEmpty() || boardEntity.isEmpty()) {
+//            throw new RuntimeException("user or board not found");
+//        }
+//
+//        BoardEntity board = boardEntity.get();
+//        board.getUsersRoles().
+//    }
 }

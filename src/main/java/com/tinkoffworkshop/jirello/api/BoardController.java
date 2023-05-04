@@ -32,16 +32,19 @@ public class BoardController {
         return new ResponseEntity<>(boardResponseList, HttpStatus.OK);
     }
 
-//    @PutMapping()
-//    public ResponseEntity<?> updateBoardName(@RequestParam(name = "boardId") Long boardId, BoardRequest boardRequest) {
-//        BoardResponse boardResponse = boardService.updateBoardName(boardId);
-//
-//        return new ResponseEntity<>(boardResponse, HttpStatus.OK);
-//    }
+    @PutMapping()
+    public ResponseEntity<?> updateBoardName(@RequestParam(name = "boardId") Long boardId, BoardRequest boardRequest) {
+        BoardResponse boardResponse = boardService.updateBoardName(boardId, boardRequest);
+
+        return new ResponseEntity<>(boardResponse, HttpStatus.OK);
+    }
 
 //    @PutMapping("/{boardId}")
-//    public ResponseEntity<?> updateBoardParticipants(@PathVariable(name = "boardId") Long boardId, BoardRequest boardRequest) {
-//        BoardResponse boardResponse = boardService.updateBoardParticipants(boardId);
+//    public ResponseEntity<?> updateBoardParticipants(
+//            @PathVariable(name = "boardId") Long boardId,
+//            @RequestParam(name = "userId") Long userId
+//    ) {
+//        BoardResponse boardResponse = boardService.updateBoardParticipants(boardId, userId);
 //
 //        return new ResponseEntity<>(boardResponse, HttpStatus.OK);
 //    }
