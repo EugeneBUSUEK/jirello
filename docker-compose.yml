@@ -1,0 +1,32 @@
+version: '2'
+services:
+  jirello:
+    container_name: jirello
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+#      - QUARKUS_DATASOURCE_JDBC_ACQUISITION_TIMEOUT=10
+#    image: springboot-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - some-net
+    depends_on:
+      - database
+  database:
+    container_name: jirellodb
+    image: postgres:15.2-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=root
+    networks:
+      - some-net
+networks:
+  some-net:
+    driver: bridge
