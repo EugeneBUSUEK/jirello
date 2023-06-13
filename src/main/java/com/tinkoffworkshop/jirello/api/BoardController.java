@@ -1,6 +1,7 @@
 package com.tinkoffworkshop.jirello.api;
 
 import com.tinkoffworkshop.jirello.model.request.BoardRequest;
+import com.tinkoffworkshop.jirello.model.response.BoardByIdResponse;
 import com.tinkoffworkshop.jirello.model.response.BoardResponse;
 import com.tinkoffworkshop.jirello.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,13 @@ public class BoardController {
         List<BoardResponse> boardResponseList = boardService.getBoardsByUserId(userId);
 
         return new ResponseEntity<>(boardResponseList, HttpStatus.OK);
+    }
+
+    @GetMapping("/{boardId}")
+    public ResponseEntity<?> getBoardById(@PathVariable Long boardId) {
+        BoardByIdResponse boardByIdResponse = boardService.getBoardById(boardId);
+
+        return new ResponseEntity<>(boardByIdResponse, HttpStatus.OK);
     }
 
     @PutMapping()

@@ -1,5 +1,6 @@
 package com.tinkoffworkshop.jirello.persist.db.postgres.entity;
 
+import com.tinkoffworkshop.jirello.model.enums.RoleType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,5 +19,5 @@ public class RoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String role;
+    private RoleType role;
 }

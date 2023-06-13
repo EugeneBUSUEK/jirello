@@ -1,6 +1,7 @@
 package com.tinkoffworkshop.jirello.service;
 
 import com.tinkoffworkshop.jirello.model.request.BoardRequest;
+import com.tinkoffworkshop.jirello.model.response.BoardByIdResponse;
 import com.tinkoffworkshop.jirello.model.response.BoardResponse;
 import com.tinkoffworkshop.jirello.persist.db.postgres.BoardRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.UserRepository;
@@ -38,6 +39,18 @@ public class BoardService {
         List<BoardEntity> boardEntityList = boardRepository.findAll();
 
         return (BoardResponse) boardEntityList.stream().map(BoardMapper::mapToBoardResponse).toList();
+    }
+
+    public BoardByIdResponse getBoardById(Long boardId) {
+        Optional<BoardEntity> boardEntityOptional = boardRepository.findById(boardId);
+
+        if (boardEntityOptional.isEmpty()) {
+            throw new RuntimeException("board with id = " + boardId + " not found");
+        }
+
+        BoardEntity boardEntity = boardEntityOptional.get();
+
+        return BoardMapper.mapToBoardByIdResponse(boardEntity);
     }
 
     @Transactional
