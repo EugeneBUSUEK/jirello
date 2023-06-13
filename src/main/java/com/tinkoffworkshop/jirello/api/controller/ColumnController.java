@@ -51,17 +51,17 @@ public class ColumnController {
         return new ResponseEntity<>(columnResponse, HttpStatus.OK);
     }
 
-    @PutMapping("/{columnId}/{boardId}")
+    @PutMapping("/{columnId}/{positionAfter}")
     public ResponseEntity<?> swapColumnPositions(
             @PathVariable(name = "columnId") Long columnId,
-            @PathVariable(name = "boardId") Long boardId,
-            @RequestParam(name = "positionBefore") Integer positionBefore,
-            @RequestParam(name = "positionAfter") Integer positionAfter
+            @RequestParam(name = "positionAfter") Integer positionAfter,
+            @RequestParam(name = "boardId") Long boardId,
+            @RequestParam(name = "positionBefore") Integer positionBefore
     ) {
         ColumnResponse columnResponse = columnService.swapColumnPositions(
                 columnId,
                 boardId,
-                positionBefore,
+//                positionBefore,
                 positionAfter
         );
 

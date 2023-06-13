@@ -86,13 +86,18 @@ public class TaskService {
         return taskResponse;
     }
 
-    public List<TaskResponse> swapTaskPositionsInColumn(Long taskId, Long columnId, Integer positionBefore, Integer positionAfter) {
+    public List<TaskResponse> swapTaskPositionsInColumn(
+            Long taskId,
+            Long columnId,
+//            Integer positionBefore,
+            Integer positionAfter) {
         Optional<TaskEntity> taskEntityOptional = taskRepository.findById(taskId);
 
         if (taskEntityOptional.isEmpty()) {
             throw new RuntimeException("task not found");
         }
 
+        Integer positionBefore = taskEntityOptional.get().getPosition();
         List<TaskEntity> taskEntityList = taskRepository.getTaskEntitiesByColumnEntity_IdOrderByPositionAsc(columnId);
         List<TaskEntity> taskEntityListForUpdate = changePositionsBetween(taskEntityList, positionBefore, positionAfter);
         List<TaskEntity> updatedList = taskRepository.saveAllAndFlush(taskEntityListForUpdate);
@@ -104,13 +109,20 @@ public class TaskService {
         return updatedList.stream().map(TaskMapper::mapToTaskResponse).toList();
     }
 
-    public TaskResponse swapTaskInColumns(Long taskId, Long columnId, Long newColumnId, Long boardId, Integer positionBefore, Integer positionAfter) {
+    public TaskResponse swapTaskInColumns(
+            Long taskId,
+            Long columnId,
+            Long newColumnId,
+//            Long boardId,
+//            Integer positionBefore,
+            Integer positionAfter) {
         Optional<TaskEntity> taskEntityOptional = taskRepository.findById(taskId);
 
         if (taskEntityOptional.isEmpty()) {
             throw new RuntimeException("task not found");
         }
 
+        Integer positionBefore = taskEntityOptional.get().getPosition();
         List<TaskEntity> taskEntityListOfCurrentColumn = taskRepository.getTaskEntitiesByColumnEntity_IdOrderByPositionAsc(columnId);
         List<TaskEntity> taskEntityListForUpdate = changePositionsBetween(taskEntityListOfCurrentColumn, positionBefore, taskEntityListOfCurrentColumn.size());
 

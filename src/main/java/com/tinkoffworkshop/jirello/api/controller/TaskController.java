@@ -50,38 +50,39 @@ public class TaskController {
         return new ResponseEntity<>(taskResponse, HttpStatus.OK);
     }
 
-    @PutMapping("/{taskId}/{columnId}")
+    @PutMapping("/{taskId}")
     public ResponseEntity<?> swapTaskPositionsInColumn(
             @PathVariable(name = "taskId") Long taskId,
-            @PathVariable(name = "columnId") Long columnId,
-            @RequestParam(name = "positionBefore") Integer positionBefore,
-            @RequestParam(name = "positionAfter") Integer positionAfter
+            @RequestParam(name = "positionAfter") Integer positionAfter,
+            @RequestParam(name = "columnId") Long columnId
+//            @RequestParam(name = "positionBefore") Integer positionBefore
     ) {
         List<TaskResponse> taskResponseList = taskService.swapTaskPositionsInColumn(
                 taskId,
                 columnId,
-                positionBefore,
+//                positionBefore,
                 positionAfter
         );
 
         return new ResponseEntity<>(taskResponseList, HttpStatus.OK);
     }
 
-    @PutMapping("/{taskId}/{columnId}/{boardId}")
+    @PutMapping("/{taskId}/{positionAfter}")
     public ResponseEntity<?> swapTaskInColumns(
             @PathVariable(name = "taskId") Long taskId,
-            @PathVariable(name = "columnId") Long columnId,
-            @PathVariable(name = "boardId") Long boardId,
-            @RequestParam(name = "newColumnId") Long newColumnId,
-            @RequestParam(name = "positionBefore") Integer positionBefore,
-            @RequestParam(name = "positionAfter") Integer positionAfter
+            @PathVariable(name = "positionAfter") Integer positionAfter,
+            @RequestParam(name = "columnId") Long columnId,
+//            @RequestParam(name = "boardId") Long boardId,
+            @RequestParam(name = "newColumnId") Long newColumnId
+//            @RequestParam(name = "positionBefore") Integer positionBefore
+
     ) {
         TaskResponse taskResponse = taskService.swapTaskInColumns(
                 taskId,
                 columnId,
                 newColumnId,
-                boardId,
-                positionBefore,
+//                boardId,
+//                positionBefore,
                 positionAfter
         );
 

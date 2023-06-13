@@ -33,14 +33,14 @@ public class BoardController {
     }
 
     @GetMapping("/{boardId}")
-    public ResponseEntity<?> getBoardById(@PathVariable Long boardId) {
+    public ResponseEntity<?> getBoardById(@PathVariable(name = "boardId") Long boardId) {
         BoardByIdResponse boardByIdResponse = boardService.getBoardById(boardId);
 
         return new ResponseEntity<>(boardByIdResponse, HttpStatus.OK);
     }
 
-    @PutMapping()
-    public ResponseEntity<?> updateBoardName(@RequestParam(name = "boardId") Long boardId, BoardRequest boardRequest) {
+    @PutMapping("/{boardId}")
+    public ResponseEntity<?> updateBoardName(@PathVariable(name = "boardId") Long boardId, BoardRequest boardRequest) {
         BoardResponse boardResponse = boardService.updateBoardName(boardId, boardRequest);
 
         return new ResponseEntity<>(boardResponse, HttpStatus.OK);

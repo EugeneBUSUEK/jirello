@@ -97,7 +97,11 @@ public class ColumnService {
         return ColumnMapper.mapToColumnResponse(cE);
     }
 
-    public ColumnResponse swapColumnPositions(Long columnId, Long boardId, Integer positionBefore, Integer positionAfter) {
+    public ColumnResponse swapColumnPositions(
+            Long columnId,
+            Long boardId,
+//            Integer positionBefore,
+            Integer positionAfter) {
         Optional<ColumnEntity> columnEntity = columnRepository.findById(columnId);
 
         if (columnEntity.isEmpty()) {
@@ -106,6 +110,7 @@ public class ColumnService {
 
         ColumnEntity updatedColumnEntity = columnEntity.get();
         List<ColumnEntity> columnEntityList;
+        Integer positionBefore = updatedColumnEntity.getPosition();
 
         if (positionAfter > positionBefore) {
             columnEntityList = columnRepository.findColumnEntitiesByBoardEntity_IdAndPositionIsBetweenOrderByPositionAsc(boardId, positionBefore, positionAfter);
