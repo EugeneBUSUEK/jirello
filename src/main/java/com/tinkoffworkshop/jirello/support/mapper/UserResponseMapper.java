@@ -1,4 +1,4 @@
-package com.tinkoffworkshop.jirello.support;
+package com.tinkoffworkshop.jirello.support.mapper;
 
 import com.tinkoffworkshop.jirello.model.response.UserResponse;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.UserEntity;

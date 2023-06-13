@@ -6,7 +6,7 @@ import com.tinkoffworkshop.jirello.model.response.BoardResponse;
 import com.tinkoffworkshop.jirello.persist.db.postgres.BoardRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.UserRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.BoardEntity;
-import com.tinkoffworkshop.jirello.support.BoardMapper;
+import com.tinkoffworkshop.jirello.support.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

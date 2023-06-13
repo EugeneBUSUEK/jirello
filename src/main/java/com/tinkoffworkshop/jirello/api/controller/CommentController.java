@@ -1,4 +1,4 @@
-package com.tinkoffworkshop.jirello.api;
+package com.tinkoffworkshop.jirello.api.controller;
 
 import com.tinkoffworkshop.jirello.model.request.ColumnRequest;
 import com.tinkoffworkshop.jirello.model.request.CommentRequest;

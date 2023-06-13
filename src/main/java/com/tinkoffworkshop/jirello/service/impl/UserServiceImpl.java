@@ -5,7 +5,7 @@ import com.tinkoffworkshop.jirello.model.response.UserResponse;
 import com.tinkoffworkshop.jirello.persist.db.postgres.UserRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.UserEntity;
 import com.tinkoffworkshop.jirello.service.UserService;
-import com.tinkoffworkshop.jirello.support.UserResponseMapper;
+import com.tinkoffworkshop.jirello.support.mapper.UserResponseMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

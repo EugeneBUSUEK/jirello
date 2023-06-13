@@ -7,7 +7,7 @@ import com.tinkoffworkshop.jirello.persist.db.postgres.TaskRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.ColumnEntity;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.TagEntity;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.TaskEntity;
-import com.tinkoffworkshop.jirello.support.TaskMapper;
+import com.tinkoffworkshop.jirello.support.mapper.TaskMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

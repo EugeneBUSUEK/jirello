@@ -5,7 +5,7 @@ import com.tinkoffworkshop.jirello.model.response.TagResponse;
 import com.tinkoffworkshop.jirello.persist.db.postgres.BoardRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.TagRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.TagEntity;
-import com.tinkoffworkshop.jirello.support.TagMapper;
+import com.tinkoffworkshop.jirello.support.mapper.TagMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

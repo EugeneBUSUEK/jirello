@@ -8,7 +8,7 @@ import com.tinkoffworkshop.jirello.persist.db.postgres.UserRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.CommentEntity;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.TaskEntity;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.UserEntity;
-import com.tinkoffworkshop.jirello.support.CommentMapper;
+import com.tinkoffworkshop.jirello.support.mapper.CommentMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
