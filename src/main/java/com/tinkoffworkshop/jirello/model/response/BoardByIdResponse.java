@@ -1,6 +1,6 @@
 package com.tinkoffworkshop.jirello.model.response;
 
-import com.tinkoffworkshop.jirello.model.dto.UserIdRoleDTO;
+import com.tinkoffworkshop.jirello.model.dto.UserRoleDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +17,7 @@ public class BoardByIdResponse {
 
     private String title;
 
-    private List<UserIdRoleDTO> users;
+    private List<UserRoleDTO> users;
 
     private List<Long> columnIds;
 }

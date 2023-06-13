@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserIdRoleDTO {
+public class UserRoleDTO {
     UserResponse user;
 
     RoleType role;

@@ -1,6 +1,7 @@
 package com.tinkoffworkshop.jirello.model.response;
 
 import com.tinkoffworkshop.jirello.model.dto.UserRoleDTO;
+import com.tinkoffworkshop.jirello.model.enums.RoleType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,11 +13,11 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BoardResponse {
+public class UserBoardResponse {
 
     private Long id;
 
     private String title;
 
-    private List<UserRoleDTO> users;
+    private RoleType userRole;
 }

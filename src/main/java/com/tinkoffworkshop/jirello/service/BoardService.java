@@ -3,6 +3,7 @@ package com.tinkoffworkshop.jirello.service;
 import com.tinkoffworkshop.jirello.model.request.BoardRequest;
 import com.tinkoffworkshop.jirello.model.response.BoardByIdResponse;
 import com.tinkoffworkshop.jirello.model.response.BoardResponse;
+import com.tinkoffworkshop.jirello.model.response.UserBoardResponse;
 import com.tinkoffworkshop.jirello.persist.db.postgres.BoardRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.UserRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.BoardEntity;
@@ -58,10 +59,10 @@ public class BoardService {
         boardRepository.deleteById(boardId);
     }
 
-    public List<BoardResponse> getBoardsByUserId(Long userId) {
+    public List<UserBoardResponse> getBoardsByUserId(Long userId) {
         List<BoardEntity> boardEntityList = boardRepository.findBoardEntitiesByUserId(userId);
 
-        return boardEntityList.stream().map(BoardMapper::mapToBoardResponse).toList();
+        return boardEntityList.stream().map(boardEntity ->  BoardMapper.mapToUserBoardResponse(boardEntity, userId)).toList();
     }
 
     public BoardResponse updateBoardName(Long boardId, BoardRequest boardRequest) {

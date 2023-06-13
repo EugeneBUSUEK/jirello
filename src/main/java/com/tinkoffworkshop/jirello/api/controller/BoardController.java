@@ -3,6 +3,7 @@ package com.tinkoffworkshop.jirello.api.controller;
 import com.tinkoffworkshop.jirello.model.request.BoardRequest;
 import com.tinkoffworkshop.jirello.model.response.BoardByIdResponse;
 import com.tinkoffworkshop.jirello.model.response.BoardResponse;
+import com.tinkoffworkshop.jirello.model.response.UserBoardResponse;
 import com.tinkoffworkshop.jirello.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class BoardController {
 
     @GetMapping()
     public ResponseEntity<?> getBoardsByUserId(@RequestParam(name = "userId") Long userId) {
-        List<BoardResponse> boardResponseList = boardService.getBoardsByUserId(userId);
+        List<UserBoardResponse> boardResponseList = boardService.getBoardsByUserId(userId);
 
         return new ResponseEntity<>(boardResponseList, HttpStatus.OK);
     }
