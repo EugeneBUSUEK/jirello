@@ -50,10 +50,10 @@ public class TaskController {
         return new ResponseEntity<>(taskResponse, HttpStatus.OK);
     }
 
-    @PutMapping("/{taskId}")
+    @PutMapping("/{taskId}/{positionAfter}")
     public ResponseEntity<?> swapTaskPositionsInColumn(
             @PathVariable(name = "taskId") Long taskId,
-            @RequestParam(name = "positionAfter") Integer positionAfter,
+            @PathVariable(name = "positionAfter") Integer positionAfter,
             @RequestParam(name = "columnId") Long columnId
 //            @RequestParam(name = "positionBefore") Integer positionBefore
     ) {
@@ -67,11 +67,11 @@ public class TaskController {
         return new ResponseEntity<>(taskResponseList, HttpStatus.OK);
     }
 
-    @PutMapping("/{taskId}/{positionAfter}")
+    @PutMapping("/{taskId}/{positionAfter}/{columnId}")
     public ResponseEntity<?> swapTaskInColumns(
             @PathVariable(name = "taskId") Long taskId,
             @PathVariable(name = "positionAfter") Integer positionAfter,
-            @RequestParam(name = "columnId") Long columnId,
+            @PathVariable(name = "columnId") Long columnId,
 //            @RequestParam(name = "boardId") Long boardId,
             @RequestParam(name = "newColumnId") Long newColumnId
 //            @RequestParam(name = "positionBefore") Integer positionBefore
