@@ -13,3 +13,6 @@ spring:
     init:
       data-locations: classpath:db/script.sql
       mode: always
+springdoc:
+  packagesToScan: com.tinkoffworkshop.jirello.api.controller
+  pathsToMatch: /**

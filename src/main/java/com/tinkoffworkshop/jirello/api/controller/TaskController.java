@@ -3,6 +3,8 @@ package com.tinkoffworkshop.jirello.api.controller;
 import com.tinkoffworkshop.jirello.model.request.TaskRequest;
 import com.tinkoffworkshop.jirello.model.response.TaskResponse;
 import com.tinkoffworkshop.jirello.service.TaskService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +15,11 @@ import java.util.List;
 @RestController
 @RequestMapping("tasks")
 @RequiredArgsConstructor
+@Tag(name = "tasks", description = "task resources")
 public class TaskController {
     private final TaskService taskService;
 
+    @Operation(summary = "create task")
     @PostMapping()
     public ResponseEntity<?> createTask(
             @RequestParam(name = "columnId") Long columnId,
@@ -26,6 +30,7 @@ public class TaskController {
         return new ResponseEntity<>(taskResponse, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "get tasks on column by column id")
     @GetMapping()
     public ResponseEntity<?> getTasksByColumnId(@RequestParam(name = "columnId") Long columnId) {
         List<TaskResponse> taskResponseList = taskService.getTasksByColumnId(columnId);
@@ -33,6 +38,7 @@ public class TaskController {
         return new ResponseEntity<>(taskResponseList, HttpStatus.OK);
     }
 
+    @Operation(summary = "update task by id")
     @PutMapping("/{taskId}")
     public ResponseEntity<?> updateTasksById(
             @PathVariable(name = "taskId") Long taskId,
@@ -43,6 +49,7 @@ public class TaskController {
         return new ResponseEntity<>(taskResponse, HttpStatus.OK);
     }
 
+    @Operation(summary = "delete task by id")
     @DeleteMapping("/{taskId}")
     public ResponseEntity<?> deleteTasksById(@PathVariable(name = "taskId") Long taskId) {
         TaskResponse taskResponse = taskService.deleteTasksById(taskId);
@@ -50,6 +57,7 @@ public class TaskController {
         return new ResponseEntity<>(taskResponse, HttpStatus.OK);
     }
 
+    @Operation(summary = "change task position on column")
     @PutMapping("/{taskId}/{positionAfter}")
     public ResponseEntity<?> swapTaskPositionsInColumn(
             @PathVariable(name = "taskId") Long taskId,
@@ -67,6 +75,7 @@ public class TaskController {
         return new ResponseEntity<>(taskResponseList, HttpStatus.OK);
     }
 
+    @Operation(summary = "change task position between columns")
     @PutMapping("/{taskId}/{positionAfter}/{columnId}")
     public ResponseEntity<?> swapTaskInColumns(
             @PathVariable(name = "taskId") Long taskId,

@@ -5,8 +5,8 @@ import com.tinkoffworkshop.jirello.model.response.BoardByIdResponse;
 import com.tinkoffworkshop.jirello.model.response.BoardResponse;
 import com.tinkoffworkshop.jirello.model.response.UserBoardResponse;
 import com.tinkoffworkshop.jirello.service.BoardService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +17,11 @@ import java.util.List;
 @RestController
 @RequestMapping("boards")
 @RequiredArgsConstructor
-@Api(value = "board resources")
+@Tag(name = "boards", description = "board resources")
 public class BoardController {
     private final BoardService boardService;
 
-    @ApiOperation(value = "create board")
+    @Operation(summary = "create board")
     @PostMapping()
     public ResponseEntity<?> createBoard(@RequestBody BoardRequest boardRequest) {
         BoardResponse response = boardService.createBoard(boardRequest);
@@ -29,7 +29,7 @@ public class BoardController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @ApiOperation(value = "get user's boards by user id")
+    @Operation(summary = "get user's boards by user id")
     @GetMapping()
     public ResponseEntity<?> getBoardsByUserId(@RequestParam(name = "userId") Long userId) {
         List<UserBoardResponse> boardResponseList = boardService.getBoardsByUserId(userId);
@@ -37,7 +37,7 @@ public class BoardController {
         return new ResponseEntity<>(boardResponseList, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "get board by id")
+    @Operation(summary = "get board by id")
     @GetMapping("/{boardId}")
     public ResponseEntity<?> getBoardById(@PathVariable(name = "boardId") Long boardId) {
         BoardByIdResponse boardByIdResponse = boardService.getBoardById(boardId);
@@ -45,7 +45,7 @@ public class BoardController {
         return new ResponseEntity<>(boardByIdResponse, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "rename board")
+    @Operation(summary = "rename board")
     @PutMapping("/{boardId}")
     public ResponseEntity<?> updateBoardName(@PathVariable(name = "boardId") Long boardId, BoardRequest boardRequest) {
         BoardResponse boardResponse = boardService.updateBoardName(boardId, boardRequest);
@@ -63,7 +63,7 @@ public class BoardController {
 //        return new ResponseEntity<>(boardResponse, HttpStatus.OK);
 //    }
 
-    @ApiOperation(value = "delete board by id")
+    @Operation(summary = "delete board by id")
     @DeleteMapping("/{boardId}")
     public ResponseEntity<?> deleteBoardById(
             @PathVariable(name = "boardId") Long boardId
