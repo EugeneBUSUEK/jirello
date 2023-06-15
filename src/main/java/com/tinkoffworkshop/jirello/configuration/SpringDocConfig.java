@@ -15,9 +15,10 @@ public class SpringDocConfig {
                 .info(new Info().title("Jirello API")
                         .description("Kanban sample application")
                         .version("v1")
-                        .license(new License().name("Apache 2.0").url("http://springdoc.org")))
-                .externalDocs(new ExternalDocumentation()
-                        .description("SpringShop Wiki Documentation")
-                        .url("https://springshop.wiki.github.org/docs"));
+//                        .license(new License().name("Apache 2.0").url("http://springdoc.org"))
+                );
+//                .externalDocs(new ExternalDocumentation()
+//                        .description("SpringShop Wiki Documentation")
+//                        .url("https://springshop.wiki.github.org/docs"));
     }
 }
