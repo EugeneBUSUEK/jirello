@@ -28,7 +28,7 @@ public class ColumnService {
         Optional<BoardEntity> boardEntity = boardRepository.findById(columnRequest.getBoardId());
 
         if (boardEntity.isEmpty()) {
-            throw new RuntimeException("board not find");
+            throw new RuntimeException("board with id = " + columnRequest.getBoardId() + " not found");
         }
 
         Optional<ColumnEntity> latestColumn = columnRepository.searchTopByBoardEntity_IdOrderByPositionDesc(columnRequest.getBoardId());
@@ -74,13 +74,13 @@ public class ColumnService {
         Optional<BoardEntity> boardEntity = boardRepository.findById(boardId);
 
         if (boardEntity.isEmpty()) {
-            throw new RuntimeException("board not find");
+            throw new RuntimeException("board with id = " + boardId + " not found");
         }
 
         Optional<ColumnEntity> columnEntityForDelete = columnRepository.findById(columnId);
 
         if (columnEntityForDelete.isEmpty()) {
-            throw new RuntimeException("column not find");
+            throw new RuntimeException("column with id = " + columnId + " not found");
         }
 
         Integer emptyPosition = columnEntityForDelete.get().getPosition();
@@ -100,13 +100,13 @@ public class ColumnService {
         Optional<BoardEntity> boardEntity = boardRepository.findById(boardId);
 
         if (boardEntity.isEmpty()) {
-            throw new RuntimeException("board not find");
+            throw new RuntimeException("board with id = " + boardId + " not found");
         }
 
         Optional<ColumnEntity> columnEntity = columnRepository.findById(columnId);
 
         if (columnEntity.isEmpty()) {
-            throw new RuntimeException("column not find");
+            throw new RuntimeException("column with id = " + columnId + " not found");
         }
 
         ColumnEntity column = ColumnMapper.mapToColumnEntity(columnRequest);
@@ -126,7 +126,7 @@ public class ColumnService {
         Optional<ColumnEntity> columnEntity = columnRepository.findById(columnId);
 
         if (columnEntity.isEmpty()) {
-            throw new RuntimeException("column not found");
+            throw new RuntimeException("column with id = " + columnId + " not found");
         }
 
         ColumnEntity updatedColumnEntity = columnEntity.get();

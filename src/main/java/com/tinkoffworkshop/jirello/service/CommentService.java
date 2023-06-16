@@ -27,7 +27,8 @@ public class CommentService {
         Optional<TaskEntity> taskEntity = taskRepository.findById(commentRequest.getTaskId());
 
         if (userEntity.isEmpty() || taskEntity.isEmpty()) {
-            throw new RuntimeException("user or task not found");
+            throw new RuntimeException("user with id = " + commentRequest.getUserId() +
+                    " or task with id = " + commentRequest.getTaskId() + " not found");
         }
 
         CommentEntity commentEntity = CommentMapper.mapToCommentEntity(commentRequest, userEntity.get(), taskEntity.get());
@@ -46,7 +47,7 @@ public class CommentService {
         Optional<CommentEntity> commentEntity = commentRepository.findById(commentId);
 
         if (commentEntity.isEmpty()) {
-            throw new RuntimeException("comment not found");
+            throw new RuntimeException("comment with id = " + commentId + " not found");
         }
 
         CommentResponse commentResponse = CommentMapper.mapToCommentResponse(commentEntity.get());

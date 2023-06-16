@@ -51,7 +51,7 @@ public class TaskService {
         Optional<TaskEntity> taskEntityOptional = taskRepository.findById(taskId);
 
         if (taskEntityOptional.isEmpty()) {
-            throw new RuntimeException("task nit found");
+            throw new RuntimeException("task with id = " + taskId + " not found");
         }
 
         TaskEntity taskForUpdate = taskEntityOptional.get();
@@ -71,7 +71,7 @@ public class TaskService {
         Optional<TaskEntity> taskEntity = taskRepository.findById(taskId);
 
         if (taskEntity.isEmpty()) {
-            throw new RuntimeException("task not found");
+            throw new RuntimeException("task with id = " + taskId + " not found");
         }
 
         List<TaskEntity> taskEntityList = taskRepository.getTaskEntitiesByColumnEntity_IdOrderByPositionAsc(taskEntity.get().getColumnEntity().getId());
@@ -94,7 +94,7 @@ public class TaskService {
         Optional<TaskEntity> taskEntityOptional = taskRepository.findById(taskId);
 
         if (taskEntityOptional.isEmpty()) {
-            throw new RuntimeException("task not found");
+            throw new RuntimeException("task with id = " + taskId + " not found");
         }
 
         Integer positionBefore = taskEntityOptional.get().getPosition();
@@ -119,7 +119,7 @@ public class TaskService {
         Optional<TaskEntity> taskEntityOptional = taskRepository.findById(taskId);
 
         if (taskEntityOptional.isEmpty()) {
-            throw new RuntimeException("task not found");
+            throw new RuntimeException("task with id = " + taskId + " not found");
         }
 
         Integer positionBefore = taskEntityOptional.get().getPosition();

@@ -67,9 +67,15 @@ public class BoardService {
 
     public BoardResponse updateBoardName(Long boardId, BoardRequest boardRequest) {
         Optional<BoardEntity> boardEntityOptional = boardRepository.findById(boardId);
+
+        if (boardEntityOptional.isEmpty()) {
+            throw new RuntimeException("board with id = " + boardId + " not found");
+        }
+
         BoardEntity boardEntity = boardEntityOptional.get();
 
         boardEntity.setTitle(boardRequest.getTitle());
+
         boardEntity = boardRepository.save(boardEntity);
 
         return BoardMapper.mapToBoardResponse(boardEntity);
