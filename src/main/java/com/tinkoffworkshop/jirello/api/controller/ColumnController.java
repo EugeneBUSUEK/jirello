@@ -2,6 +2,7 @@ package com.tinkoffworkshop.jirello.api.controller;
 
 import com.tinkoffworkshop.jirello.model.request.ColumnRequest;
 import com.tinkoffworkshop.jirello.model.response.ColumnResponse;
+import com.tinkoffworkshop.jirello.model.response.SingleColumnResponse;
 import com.tinkoffworkshop.jirello.service.ColumnService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,6 +26,14 @@ public class ColumnController {
         ColumnResponse columnResponse = columnService.createColumnOnBoard(columnRequest);
 
         return new ResponseEntity<>(columnResponse, HttpStatus.CREATED);
+    }
+
+    @Operation(summary = "get column by id")
+    @GetMapping("/{columnId}")
+    public ResponseEntity<?> getColumnById(@PathVariable(name = "columnId") Long columnId) {
+        SingleColumnResponse columnResponse = columnService.getColumnById(columnId);
+
+        return new ResponseEntity<>(columnResponse, HttpStatus.OK);
     }
 
     @Operation(summary = "get columns on board by bord id")

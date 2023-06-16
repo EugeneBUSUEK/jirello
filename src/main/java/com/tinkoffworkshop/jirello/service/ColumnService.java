@@ -2,11 +2,15 @@ package com.tinkoffworkshop.jirello.service;
 
 import com.tinkoffworkshop.jirello.model.request.ColumnRequest;
 import com.tinkoffworkshop.jirello.model.response.ColumnResponse;
+import com.tinkoffworkshop.jirello.model.response.SingleColumnResponse;
+import com.tinkoffworkshop.jirello.model.response.TaskResponse;
 import com.tinkoffworkshop.jirello.persist.db.postgres.BoardRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.ColumnRepository;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.BoardEntity;
 import com.tinkoffworkshop.jirello.persist.db.postgres.entity.ColumnEntity;
+import com.tinkoffworkshop.jirello.persist.db.postgres.entity.TaskEntity;
 import com.tinkoffworkshop.jirello.support.mapper.ColumnMapper;
+import com.tinkoffworkshop.jirello.support.mapper.TaskMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +43,23 @@ public class ColumnService {
         var savedEntity = columnRepository.save(columnEntity);
 
         return ColumnMapper.mapToColumnResponse(savedEntity);
+    }
+
+    public SingleColumnResponse getColumnById(Long columnId) {
+        Optional<ColumnEntity> columnEntityOptional = columnRepository.findById(columnId);
+
+        if (columnEntityOptional.isEmpty()) {
+            throw new RuntimeException("column with id = " + columnId + " not found");
+        }
+        ColumnEntity columnEntity = columnEntityOptional.get();
+
+        List<TaskEntity> taskEntityList = columnEntity.getTasks();
+        List<TaskResponse> taskResponseList = taskEntityList.stream()
+                .map(TaskMapper::mapToTaskResponse)
+                .toList();
+        SingleColumnResponse singleColumnResponse = ColumnMapper.mapToSingleColumnResponse(columnEntity);
+
+        return singleColumnResponse;
     }
 
     public List<ColumnResponse> getColumnsOnBoard(Long boardId) {
