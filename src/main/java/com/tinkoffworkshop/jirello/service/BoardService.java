@@ -83,6 +83,18 @@ public class BoardService {
     }
 
     public BoardResponse updateBoardParticipantsRole(Long boardId, Long adminId, List<UserRoleRequest> userRoleRequests) {
-        return null;
+        Optional<BoardEntity> boardEntityOptional = boardRepository.findById(boardId);
+
+        if (boardEntityOptional.isEmpty()) {
+            throw new RuntimeException("board with id = " + boardId + " not found");
+        }
+
+        BoardEntity boardEntity = boardEntityOptional.get();
+
+        boardEntity.getUsersRoles().putAll(userRoleService.getUserRoles(userRoleRequests));
+
+        boardEntity = boardRepository.save(boardEntity);
+
+        return BoardMapper.mapToBoardResponse(boardEntity);
     }
 }
