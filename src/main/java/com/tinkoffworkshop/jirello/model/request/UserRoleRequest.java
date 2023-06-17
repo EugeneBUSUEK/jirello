@@ -1,5 +1,6 @@
 package com.tinkoffworkshop.jirello.model.request;
 
+import com.tinkoffworkshop.jirello.model.enums.RoleType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,5 +14,5 @@ public class UserRoleRequest {
 
     private Long userId;
 
-    private Long roleId;
+    private RoleType role;
 }

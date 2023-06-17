@@ -1,6 +1,7 @@
 package com.tinkoffworkshop.jirello.service;
 
 import com.tinkoffworkshop.jirello.model.request.BoardRequest;
+import com.tinkoffworkshop.jirello.model.request.UserRoleRequest;
 import com.tinkoffworkshop.jirello.model.response.BoardByIdResponse;
 import com.tinkoffworkshop.jirello.model.response.BoardResponse;
 import com.tinkoffworkshop.jirello.model.response.UserBoardResponse;
@@ -81,15 +82,7 @@ public class BoardService {
         return BoardMapper.mapToBoardResponse(boardEntity);
     }
 
-//    public BoardResponse updateBoardParticipants(Long boardId, Long userId) {
-//        Optional<BoardEntity> boardEntity = boardRepository.findById(boardId);
-//        Optional<UserEntity> userEntity = userRepository.findById(userId);
-//
-//        if (userEntity.isEmpty() || boardEntity.isEmpty()) {
-//            throw new RuntimeException("user or board not found");
-//        }
-//
-//        BoardEntity board = boardEntity.get();
-//        board.getUsersRoles().
-//    }
+    public BoardResponse updateBoardParticipantsRole(Long boardId, Long adminId, List<UserRoleRequest> userRoleRequests) {
+        return null;
+    }
 }

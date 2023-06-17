@@ -1,6 +1,7 @@
 package com.tinkoffworkshop.jirello.api.controller;
 
 import com.tinkoffworkshop.jirello.model.request.BoardRequest;
+import com.tinkoffworkshop.jirello.model.request.UserRoleRequest;
 import com.tinkoffworkshop.jirello.model.response.BoardByIdResponse;
 import com.tinkoffworkshop.jirello.model.response.BoardResponse;
 import com.tinkoffworkshop.jirello.model.response.UserBoardResponse;
@@ -53,15 +54,16 @@ public class BoardController {
         return new ResponseEntity<>(boardResponse, HttpStatus.OK);
     }
 
-//    @PutMapping("/{boardId}")
-//    public ResponseEntity<?> updateBoardParticipants(
-//            @PathVariable(name = "boardId") Long boardId,
-//            @RequestParam(name = "userId") Long userId
-//    ) {
-//        BoardResponse boardResponse = boardService.updateBoardParticipants(boardId, userId);
-//
-//        return new ResponseEntity<>(boardResponse, HttpStatus.OK);
-//    }
+    @PutMapping("/{boardId}/{adminId}")
+    public ResponseEntity<?> updateBoardParticipantsRole(
+            @PathVariable(name = "boardId") Long boardId,
+            @PathVariable(name = "adminId") Long adminId,
+            @RequestBody List<UserRoleRequest> userRoleRequests
+    ) {
+        BoardResponse boardResponse = boardService.updateBoardParticipantsRole(boardId, adminId, userRoleRequests);
+
+        return new ResponseEntity<>(boardResponse, HttpStatus.OK);
+    }
 
     @Operation(summary = "delete board by id")
     @DeleteMapping("/{boardId}")

@@ -24,14 +24,15 @@ public class UserRoleService {
                 userRoleRequest -> {
                     var userEntity = userRepository.findById(userRoleRequest.getUserId());
 
-                    if (userEntity.isEmpty()) throw new RuntimeException("User not found");
+                    if (userEntity.isEmpty()) throw new RuntimeException("User with id = " +
+                            userRoleRequest.getUserId() + " not found");
 
                     return userEntity.get();
                 },
                 userRoleRequest -> {
-                    var roleEntity = roleRepository.findById(userRoleRequest.getRoleId());
+                    var roleEntity = roleRepository.getRoleEntityByRole(userRoleRequest.getRole());
 
-                    if (roleEntity.isEmpty()) throw new RuntimeException("Role not found");
+                    if (roleEntity.isEmpty()) throw new RuntimeException("Role " + userRoleRequest.getRole().getRole() + " not found");
 
                     return roleEntity.get();
                 }
